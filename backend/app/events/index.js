@@ -1,19 +1,6 @@
-import express from "express"
-import { KEYS } from "./lib/config/keys.js"
-import { events } from "./app/events/index.js"
-import { IMAGE } from "./lib/imageControl.js"
 
-const app = express()
-
-app.use(express.static("public"))
-app.use(express.json())
-
-app.get("/", (req, res) => {
-    res.send("This is the events API. Send requests to /api/events to get events data")
-})
-
-app.get("/api/events", (req, res) => {
-    res.status(200).json([
+export const events = () => {
+    return [
         {
             name: "Event 1",
             date: "2021-01-01",
@@ -38,9 +25,5 @@ app.get("/api/events", (req, res) => {
             description: "Description 3",
             image: IMAGE.image1
         }
-    ])
-})
-
-app.listen(KEYS.PORT, () => {
-    console.log(`Server is running on port ${KEYS.PORT}`)
-})
+    ]
+}
